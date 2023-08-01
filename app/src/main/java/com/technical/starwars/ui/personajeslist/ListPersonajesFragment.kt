@@ -1,15 +1,15 @@
 package com.technical.starwars.ui.personajeslist
 
+import android.content.res.Configuration
 import android.os.Bundle
-import android.provider.MediaStore.Audio.Genres
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.technical.starwars.R
 import com.technical.starwars.databinding.FragmentListPersonajesBinding
 import com.technical.starwars.ui.personajeslist.adapter.CharacterAdapter
 import com.technical.starwars.ui.viewModel.GeneralViewModel
@@ -27,7 +27,6 @@ class ListPersonajesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentListPersonajesBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -35,13 +34,34 @@ class ListPersonajesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[GeneralViewModel::class.java]
         setAdapters()
+        setMenu()
+    }
+
+    private fun setMenu() {
+        binding.apply {
+            toolbarSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    viewModel.setNewQuery(toolbarSearch.query.toString())
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    viewModel.setNewQuery(toolbarSearch.query.toString())
+                    return true
+                }
+
+            })
+        }
     }
 
     private fun setAdapters() {
-        viewModel.allCharacter.observe(viewLifecycleOwner) {listResponse ->
+        viewModel.listShowFilter.observe(viewLifecycleOwner) { listResponse ->
             binding.recyclerMainMorty.apply {
                 adapter = CharacterAdapter(listResponse)
-                layoutManager = GridLayoutManager(requireContext(), 2)
+                layoutManager = if(resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
+                    GridLayoutManager(requireContext(), 2)
+                else
+                    GridLayoutManager(requireContext(), 4)
             }
         }
     }

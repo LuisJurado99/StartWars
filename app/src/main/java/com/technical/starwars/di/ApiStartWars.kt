@@ -1,7 +1,8 @@
-package com.technical.starwars.di.retrofit
-
+package com.technical.starwars.di
+import com.technical.starwars.BuildConfig
 import com.technical.starwars.data.CharacterRepository
 import com.technical.starwars.data.retrofit.RetrofitCharactersPetitions
+import com.technical.starwars.data.retrofit.RetrofitService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +16,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class ApiStartWars {
-
 
     @Singleton
     @Provides
@@ -32,7 +32,7 @@ class ApiStartWars {
     @Singleton
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder().apply {
-        baseUrl(URL_START_WARS)
+        baseUrl(if (BuildConfig.BUILD_TYPE.contains("debug")) URL_RICK_MORTY else URL_START_WARS)
         addConverterFactory(GsonConverterFactory.create())
         client(okHttpClient)
     }.build()
@@ -45,10 +45,11 @@ class ApiStartWars {
     
     @Singleton
     @Provides
-    fun providesCharacterRepository(retrofitCharactersPetitions: RetrofitCharactersPetitions) =
-        CharacterRepository(retrofitCharactersPetitions)
+    fun providesCharacterRepository(retrofitService: RetrofitService) =
+        CharacterRepository(retrofitService)
 
     companion object {
-        private val URL_START_WARS: String = "https://rickandmortyapi.com/api/"
+        private val URL_START_WARS: String = "https://akabab.github.io/starwars-api/api/"
+        private val URL_RICK_MORTY: String = "https://rickandmortyapi.com/api/"
     }
 }
