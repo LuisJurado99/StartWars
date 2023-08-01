@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listPersonajesFragment">
+
+
+    <fragment
+        android:id="@+id/listPersonajesFragment"
+        android:name="com.technical.starwars.ui.personajeslist.ListPersonajesFragment"
+        android:label="fragment_list_personajes"
+        tools:layout="@layout/fragment_list_personajes" >
+        <action
+            android:id="@+id/action_listPersonajesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_listPersonajesFragment_to_detailsStarFragment"
+            app:destination="@id/detailsStarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.technical.starwars.ui.detailsfragment.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details">
+        <argument android:name="id" android:defaultValue="0"
+             app:argType="integer"/>
+    </fragment>
+    <fragment
+        android:id="@+id/detailsStarFragment"
+        android:name="com.technical.starwars.ui.detailsfragmentstar.DetailsStarFragment"
+        android:label="fragment_details_star"
+        tools:layout="@layout/fragment_details_star">
+        <argument android:name="id" android:defaultValue="0"
+            app:argType="integer"/>
+    </fragment>
+
+</navigation>

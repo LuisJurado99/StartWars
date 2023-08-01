@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="rickMorty"
+            type="com.technical.starwars.data.entity.rickmorty.RickMorty" />
+    </data>
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.detailsfragmentstar.DetailsStarFragment">
+        <TableRow>
+            <Toolbar android:id="@+id/tb_details" android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow android:layout_margin="@dimen/item_character_image_margin_all_direction">
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/fragment_details_name" />
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@{rickMorty.name}" />
+        </TableRow>
+
+        <TableRow android:layout_margin="@dimen/item_character_image_margin_all_direction">
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/fragment_details_status" />
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@{rickMorty.status}" />
+        </TableRow>
+
+        <TableRow android:layout_margin="@dimen/item_character_image_margin_all_direction">
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/fragment_details_type" />
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@{rickMorty.type}" />
+        </TableRow>
+
+        <TableRow android:layout_margin="@dimen/item_character_image_margin_all_direction">
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/fragment_details_gender" />
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@{rickMorty.species}" />
+        </TableRow>
+
+        <TableRow android:layout_margin="@dimen/item_character_image_margin_all_direction">
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/fragment_details_gender" />
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@{rickMorty.gender}" />
+        </TableRow>
+
+        <TableRow android:layout_margin="@dimen/item_character_image_margin_all_direction">
+
+            <ImageView
+                imageUrl="@{rickMorty.image}"
+                android:layout_weight="1" />
+        </TableRow>
+    </TableLayout>
+</layout>

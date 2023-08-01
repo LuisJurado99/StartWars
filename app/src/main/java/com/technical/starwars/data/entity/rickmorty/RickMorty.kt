@@ -1,4 +1,4 @@
-package com.technical.starwars.data.entity
+package com.technical.starwars.data.entity.rickmorty
 
 import com.google.gson.annotations.SerializedName
 
@@ -10,14 +10,8 @@ data class RickMorty(@SerializedName("image")
                        val species: String = "",
                      @SerializedName("created")
                        val created: String = "",
-                     @SerializedName("origin")
-                       val origin: Origin,
                      @SerializedName("name")
                        val name: String = "",
-                     @SerializedName("location")
-                       val location: Location,
-                     @SerializedName("episode")
-                       val episode: List<String>?,
                      @SerializedName("id")
                        val id: Int = 0,
                      @SerializedName("type")

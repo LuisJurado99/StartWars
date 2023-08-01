@@ -9,7 +9,7 @@ class BindingAdapters {
     companion object {
         @JvmStatic
         @BindingAdapter("imageUrl")
-        fun setImageUrl (view: ImageView, url: String) {
+        fun setImageUrl (view: ImageView, url: String?) {
             Picasso.get().load(url).error(R.drawable.placeholder).into(view)
         }
     }
