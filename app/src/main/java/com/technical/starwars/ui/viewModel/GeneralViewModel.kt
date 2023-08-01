@@ -1,34 +1,52 @@
 package com.technical.starwars.ui.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.technical.starwars.data.entity.RickMorty
 import com.technical.starwars.domain.GetAllCharactesUseCase
+import com.technical.starwars.domain.data.People
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
 @HiltViewModel
-class GeneralViewModel @Inject constructor(private val getAllCharactesUseCase: GetAllCharactesUseCase) : ViewModel() {
+class GeneralViewModel @Inject constructor(private val getAllCharactesUseCase: GetAllCharactesUseCase) :
+    ViewModel() {
 
-    private var _allCharacter: MutableLiveData<List<RickMorty>> = MutableLiveData(
+    private var _allCharacter: MutableLiveData<List<People>> = MutableLiveData(
         listOf()
     )
-    val allCharacter: LiveData<List<RickMorty>> get() = _allCharacter
+    private val allCharacter: LiveData<List<People>> get() = _allCharacter
 
+    private var _listShowFilter: MutableLiveData<List<People>> = MutableLiveData(
+        listOf()
+    )
+    val listShowFilter: LiveData<List<People>> get() = _listShowFilter
+
+    private var _searchQuery: MutableLiveData<String> = MutableLiveData("")
+    val searchQuery: LiveData<String> get() = _searchQuery
+
+    fun setNewQuery(query: String) {
+        if (query != _searchQuery.value) {
+            _searchQuery.value = query
+            loadGetAllCharacter()
+        }
+    }
 
     private fun loadGetAllCharacter() {
         viewModelScope.launch {
-            val response = getAllCharactesUseCase.invoke()
-
-            if (response.isSuccessful){
-                Log.e(GeneralViewModel::class.java.simpleName, "loadGetAllCharacter: ${response.body()?.results}", )
-                _allCharacter.postValue(getAllCharactesUseCase.invoke().body()?.results)
-            } else{
-                Log.e(GeneralViewModel::class.java.simpleName, "loadGetAllCharacter: com.technical.starwars.data.entity.Character", )
+            if (allCharacter.value.isNullOrEmpty()) {
+                _allCharacter.value = getAllCharactesUseCase.invoke()
+            }
+            if (searchQuery.value.isNullOrEmpty()) {
+                _listShowFilter.postValue(_allCharacter.value)
+            } else {
+                _listShowFilter.postValue(_allCharacter.value?.filter {
+                    it.name?.uppercase()?.contains(
+                        searchQuery.value?.uppercase() ?: ""
+                    ) == true
+                })
             }
         }
     }

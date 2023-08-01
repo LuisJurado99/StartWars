@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="people"
-            type="com.technical.starwars.data.entity.RickMorty" />
+            type="com.technical.starwars.domain.data.People" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
