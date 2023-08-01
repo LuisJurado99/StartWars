@@ -32,3 +32,12 @@ Second Variant
 ![image](https://github.com/LuisJurado99/StartWars/assets/31529329/615aea0f-7b80-4c76-ac77-4bb08e7d017a)
 ![image](https://github.com/LuisJurado99/StartWars/assets/31529329/a4cbe501-abe8-475b-a5ee-099052ee0f09)
 
+This application show details of the characters in two build variants
+First variant
+![image](https://github.com/LuisJurado99/StartWars/assets/31529329/dee3b710-4d8c-452d-b1c9-3e752e39d1a1)
+![image](https://github.com/LuisJurado99/StartWars/assets/31529329/617b2baf-d9d2-45be-84d8-5e39a4ffe94d)
+Second Variant
+![image](https://github.com/LuisJurado99/StartWars/assets/31529329/7f4a2570-8643-417c-96d5-cfb29ab94e42)
+![image](https://github.com/LuisJurado99/StartWars/assets/31529329/976a1d3b-6d40-4ff8-ae2d-377286356a05)
+
+
