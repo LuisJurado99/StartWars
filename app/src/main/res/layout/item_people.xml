@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="people"
+            type="com.technical.starwars.data.entity.RickMorty" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/item_character_image_margin_all_direction">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_character_image_margin_all_direction"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                imageUrl="@{people.image}"
+                android:id="@+id/iv_people"
+                android:layout_width="@dimen/item_character_image_default_width_height"
+                android:layout_height="@dimen/item_character_image_default_width_height"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:text="@{people.name}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Texto Ejemplo Position " />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
