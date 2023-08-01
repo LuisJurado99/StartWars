@@ -51,7 +51,7 @@
 
             <TextView
                 android:layout_weight="1"
-                android:text="@string/fragment_details_gender" />
+                android:text="@string/fragment_details_species" />
 
             <TextView
                 android:layout_weight="1"
